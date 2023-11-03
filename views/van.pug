@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h1= title
+  - var results = [{Company:"Hyundai", Model : "500", Cost:15000}, {Company:"Nissan", Model : "300", Cost:16000}, {Company:"BMW", Model: "200", Cost:1000}]
+  div(class="container-fluid")
+     div(class="row")
+     each van,index in results 
+        div(class="row")
+           div(class="col-sm-2", onclick=`buy(${index})`) #{van.Company}
+           div(class="col-sm-2", onclick=`buy(${index})`) #{ van.Model}
+           div(class="col-sm-2", onclick=`buy(${index})`) #{ van.Cost}
+  script.
+     function buy(i){
+      alert(`You purchased item ${i+1}`)
+     }
