@@ -4,11 +4,17 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+require('dotenv').config();
+const connectionString = process.env.MONGO_CON
+mongoose = require('mongoose');
+mongoose.connect(connectionString,{useNewUrlParser: true,useUnifiedTopology: true});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var vanRouter = require('./routes/van');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
+var Costume = require("./models/costume");
 
 var app = express();
 
@@ -43,5 +49,59 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+//Get the default connection
+var db = mongoose.connection;
+//Bind connection to error event
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once("open", function(){
+  console.log("Connection to DB succeeded")
+});
+
+
+async function recreateDB(){
+  // Delete everything
+  await Costume.deleteMany();
+
+  let instance1 = new Costume({costume_type:"ghost", size:'large', cost:15.4});
+  instance1.save().then(doc=>{
+    console.log("First object saved")}
+  ).catch(err=>{
+    console.error(err)
+  });
+
+  let instance2 = new Costume({costume_type:"sherwani", size:'small', cost:14.3});
+  instance2.save().then(doc=>{
+    console.log("Second object saved")}
+  ).catch(err=>{
+    console.error(err)
+  });
+
+  let instance3 = new Costume({costume_type:"shirt", size:'medium', cost:159.2});
+  instance3.save().then(doc=>{
+    console.log("Third object saved")}
+  ).catch(err=>{
+    console.error(err)
+  });
+
+  let instance4 = new Costume({costume_type:"pant", size:'XL', cost:95.1});
+  instance4.save().then(doc=>{
+    console.log("Fourth object saved")}
+  ).catch(err=>{
+    console.error(err)
+  });
+
+  let instance5 = new Costume({costume_type:"shorts", size:'XXL', cost:105.0});
+  instance5.save().then(doc=>{
+    console.log("Fifth object saved")}
+  ).catch(err=>{
+    console.error(err)
+  });
+
+  }
+
+  let reseed = true;
+  if (reseed) {recreateDB();}
+  
 
 module.exports = app;
