@@ -8,10 +8,12 @@ exports.van_list = async function(req, res) {
     try{
         thevans = await van.find();
         res.send(thevans);
+
     }
     catch(err){
         res.status(500);
         res.send(`{"error": ${err}}`);
+        
     }
 };
 
