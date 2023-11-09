@@ -13,7 +13,7 @@ exports.van_list = async function(req, res) {
     catch(err){
         res.status(500);
         res.send(`{"error": ${err}}`);
-        
+
     }
 };
 
@@ -34,9 +34,9 @@ exports.van_create_post = async function(req, res) {
     // Even though bodies can be in many different formats, we will be picky
     // and require that it be a json object
     // {"van_type":"goat", "cost":12, "size":"large"}
-    document.van_type = req.body.van_type;
+    document.Company = req.body.Company;
+    document.Model = req.body.Model;
     document.cost = req.body.cost;
-    document.size = req.body.size;
     try{
         let result = await document.save();
         res.send(result);

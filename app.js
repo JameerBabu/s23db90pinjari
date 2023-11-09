@@ -16,7 +16,7 @@ var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
 var Van = require("./models/van");
 var resourceRouter = require('./routes/resource');
-var vanRouter = require('./routes/van')
+var vansRouter = require('./routes/vans')
 
 var app = express();
 
@@ -36,6 +36,7 @@ app.use('/van', vanRouter);
 app.use('/board', boardRouter);
 app.use('/choose', chooseRouter);
 app.use('/resource', resourceRouter);
+app.use('/vans',vansRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

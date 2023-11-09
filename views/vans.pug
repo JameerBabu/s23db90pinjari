@@ -1,0 +1,12 @@
+extends layout
+
+block content
+  h1= title
+  - var items = results
+  div(class="container-fluid")
+     div(class="row")
+     each van in items 
+        div(class="row")
+           div(class="col-sm-2") #{van.Company}
+           div(class="col-sm-2") #{van.Model}
+           div(class="col-sm-2") #{van.cost}
