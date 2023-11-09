@@ -1,4 +1,4 @@
-var Costume = require('../models/costume');
+var Costume = require('../models/van');
 // List of all Costumes
 // exports.costume_list = function(req, res) {
 // res.send('NOT IMPLEMENTED: Costume list');

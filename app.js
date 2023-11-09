@@ -14,7 +14,7 @@ var usersRouter = require('./routes/users');
 var vanRouter = require('./routes/van');
 var boardRouter = require('./routes/board');
 var chooseRouter = require('./routes/choose');
-var Costume = require("./models/costume");
+var Van = require("./models/van");
 var resourceRouter = require('./routes/resource');
 var costumeRouter = require('./routes/costumes')
 
@@ -65,37 +65,37 @@ db.once("open", function(){
 
 async function recreateDB(){
   // Delete everything
-  await Costume.deleteMany();
+  await Van.deleteMany();
 
-  let instance1 = new Costume({costume_type:"ghost", size:'large', cost:15.4});
+  let instance1 = new Van({Company:"Minivan", Model:'large', cost:15.4});
   instance1.save().then(doc=>{
     console.log("First object saved")}
   ).catch(err=>{
     console.error(err)
   });
 
-  let instance2 = new Costume({costume_type:"sherwani", size:'small', cost:14.3});
+  let instance2 = new Van({Company:"Ram ProMaster", Model:'old', cost:14.3});
   instance2.save().then(doc=>{
     console.log("Second object saved")}
   ).catch(err=>{
     console.error(err)
   });
 
-  let instance3 = new Costume({costume_type:"shirt", size:'medium', cost:159.2});
+  let instance3 = new Van({Company:"Berlingo", Model:'medium', cost:159.2});
   instance3.save().then(doc=>{
     console.log("Third object saved")}
   ).catch(err=>{
     console.error(err)
   });
 
-  let instance4 = new Costume({costume_type:"pant", size:'XL', cost:95.1});
+  let instance4 = new Van({Company:"Mercedes-Benz Sprinter", Model:'New', cost:95.1});
   instance4.save().then(doc=>{
     console.log("Fourth object saved")}
   ).catch(err=>{
     console.error(err)
   });
 
-  let instance5 = new Costume({costume_type:"shorts", size:'XXL', cost:105.0});
+  let instance5 = new Van({Company:"Ram ProMaster City", Model:'New', cost:105.0});
   instance5.save().then(doc=>{
     console.log("Fifth object saved")}
   ).catch(err=>{
