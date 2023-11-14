@@ -62,9 +62,25 @@ exports.van_create_post = async function(req, res) {
     
 
 // Handle van delete form on DELETE.
-exports.van_delete = function(req, res) {
-res.send('NOT IMPLEMENTED: van delete DELETE ' + req.params.id);
+// exports.van_delete = function(req, res) {
+// res.send('NOT IMPLEMENTED: van delete DELETE ' + req.params.id);
+// };
+
+
+
+// Handle van delete on DELETE.
+exports.van_delete = async function(req, res) {
+console.log("delete " + req.params.id)
+try {
+result = await van.findByIdAndDelete( req.params.id)
+console.log("Removed " + result)
+res.send(result)
+} catch (err) {
+res.status(500)
+res.send(`{"error": Error deleting ${err}}`);
+}
 };
+
 // Handle van update form on PUT.
 // exports.van_update_put = function(req, res) {
 // res.send('NOT IMPLEMENTED: van update PUT' + req.params.id);
