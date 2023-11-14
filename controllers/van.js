@@ -120,3 +120,17 @@ res.status(500);
 res.send(`{"error": ${err}}`);
 }
 };
+
+// Handle a show one view with id specified by query
+exports.van_view_one_Page = async function(req, res) {
+    console.log("single view for id " + req.query.id)
+    try{
+    result = await van.findById( req.query.id)
+    res.render('vandetail',
+    { title: 'van Detail', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+    };

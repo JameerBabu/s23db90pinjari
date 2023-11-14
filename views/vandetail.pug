@@ -1,0 +1,22 @@
+extends layout
+
+block content
+  h1= title
+
+  - let vanid = toShow._id
+  - let van_Company = toShow.Company
+  - let vancost = toShow.cost
+  - let vanModel = toShow.Model
+  div
+    div.row
+       div(class='vanAttr mr-3') van ID is:
+       div #{vanid}
+    div.row
+       div(class='vanAttr mr-3') van Company is:
+       div #{van_Company}
+    div.row
+       div(class='vanAttr mr-3') van Model is:
+       div #{vanModel}
+    div.row
+       div(class='vanAttr mr-3') van Size is:
+       div #{vancost}      
