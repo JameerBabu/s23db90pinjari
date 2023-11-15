@@ -1,0 +1,49 @@
+extends layout
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance to delete
+  else
+    - let vanid = toShow._id
+    - let vanCompany = toShow.Company
+    - let vancost = toShow.cost
+    - let vanModel = toShow.Model
+    - let actionid = "/resource/vans/" + vanid
+    script let actionid = "#{actionid}"
+    div
+      div.row
+        div(class='vanAttr mr-3') van ID is:
+        div #{vanid}
+      div.row
+        div(class='vanAttr mr-3') van Type is:
+        div #{vanCompany}
+      div.row
+        div(class='vanAttr mr-3') van Model is:
+        div #{vanModel}
+      div.row
+        div(class='vanAttr mr-3') van Cost is:
+        div #{vancost}
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+  script.
+    function cancel() {
+    // Go back to the home page for the van collection
+    window.location.href='/vans'
+    }
+  script.
+    function deleteOnid() {
+    console.log("starting delete")
+    // delete first
+    fetch(actionid, {
+    method: 'DELETE' // Don't need a body for the delete
+    }).then((resp) => {
+    return resp.json(); // or resp.text() or whatever the server sends
+    }).then((body) => {
+    alert("Delete succeded")
+    window.location.href='/vans'
+    // TODO handle body
+    }).catch((error) => {
+    // TODO handle error
+    alert("Delete failed " + error )
+    });
+    }
