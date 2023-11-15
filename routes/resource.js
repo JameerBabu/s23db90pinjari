@@ -21,4 +21,6 @@ router.get('/vans', van_controller.van_list);
 router.get('/detail', van_controller.van_view_one_Page);
 /* GET create van page */
 router.get('/create', van_controller.van_create_Page);
+/* GET create update page */
+router.get('/update', van_controller.van_update_Page);
 module.exports = router;
