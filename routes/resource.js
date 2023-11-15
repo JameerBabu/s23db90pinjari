@@ -19,4 +19,6 @@ router.get('/vans/:id', van_controller.van_detail);
 router.get('/vans', van_controller.van_list);
 /* GET detail costume page */
 router.get('/detail', van_controller.van_view_one_Page);
+/* GET create van page */
+router.get('/create', van_controller.van_create_Page);
 module.exports = router;
