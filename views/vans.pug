@@ -4,9 +4,12 @@ block content
   h1= title
   - var items = results
   div(class="container-fluid")
-     div(class="row")
-     each van in items 
-        div(class="row")
-           div(class="col-sm-2") #{van.Company}
-           div(class="col-sm-2") #{van.Model}
-           div(class="col-sm-2") #{van.cost}
+     div(class="row m-1")
+     each van in items
+      - let destination = `dispatch(\"/vans/update?id=${van._id}\")` 
+      div(class="row-sm-2", class="m-1") Item #{van.Company}(#{van.Model}) is #{van.cost}
+       button.btn( class="btn-primary ml-1", onclick= destination) Update 
+     script.
+      function dispatch(path){
+      window.location.href=path
+      } 
