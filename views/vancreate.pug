@@ -10,7 +10,7 @@ block content
         input#Model(type='text', name='Model')
     div.form-group
         label.vanAttr(for='cost') Van Cost
-        input#cost(type='number', name='cost')
+        input#cost(type='number', name='cost', min=100, max=1000)
     input(type="submit")
   script.
     document.forms['VanForm'].addEventListener('submit', (event) => {
